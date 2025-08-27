@@ -1,4 +1,4 @@
-namespace eticaret.Models;
+namespace eCommerce.Models;
 
 public class ErrorViewModel
 {
