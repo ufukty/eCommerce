@@ -1,31 +1,179 @@
-html {
-  font-size: 14px;
+﻿.navbar-brand {
+  display: block;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-size: 20pt;
+  letter-spacing: 10px;
+  transform: scale(1.5, 1);
+  margin: 0 70px 0 50px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.nav-item:last-child {
+  margin-right: 0;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.index-grid-photo {
+  width: 100%;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+#product--layout-container {
+  display: flex;
 }
 
-body {
-  margin-bottom: 60px;
+#product--layout-left {
+  flex-shrink: 0;
+  width: 250px;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+.filter--container {
+  margin-top: 50px;
+  padding-right: 20px;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.filter--title {
+  font-size: 20pt;
+  color: #1a1a1a;
+}
+
+.filter--buttons {
+  margin-top: 20px;
+}
+
+.filter--buttons > a {
+  margin: 0 10px 10px 0;
+}
+
+#product--layout-right {
+  flex-shrink: 100;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 50px 0 200px 50px;
+}
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  justify-content: space-between;
+}
+
+a.card--container {
+  color: #000000 !important;
+  width: 30%;
+  padding: 20px;
+  border: 2px dashed transparent;
+  margin-bottom: 50px;
+}
+
+a.card--container:hover {
+  border-color: #dddddd;
+  text-decoration: none !important;
+}
+
+.card--image > img {
+  width: 100%;
+}
+
+.card--flex {
+  padding-top: 10px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card--name {
+  font-size: 1.5em;
+}
+
+.card--price-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.card--full-price {
+  color: red;
+  text-decoration: line-through;
+}
+
+.card--final-price {
+  font-size: 1.2em;
+}
+
+.pd--container {
+  display: flex;
+}
+
+.pd--image {
+  width: 50%;
+}
+
+.pd--image > img {
+  width: 100%;
+}
+
+.pd--details {
+  margin: 0 0 50px 50px;
+}
+
+.pd--gender-category span {
+  padding: 5px 10px;
+  margin-right: 10px;
+}
+
+.pd--name {
+  margin: 50px 0;
+}
+
+.pd--quantities {
+  margin: 50px 0;
+}
+
+.pd--full-price {
+  font-size: 2em;
+  color: #ff0000;
+  font-weight: 600;
+  text-decoration: line-through;
+}
+
+.pd--final-price {
+  font-weight: 600;
+  font-size: 3em;
+  margin-bottom: 50px;
+}
+
+.pd--full-price:not(:empty):after,
+.pd--final-price:after {
+  content: "₺";
+  font-size: 0.8em;
+}
+
+.cart--container {
+  margin: 50px 0;
+  display: flex;
+}
+
+.cart--items-container {
+  width: calc(100% - 300px);
+}
+.cart--items-container th {
+  border-bottom: 1px solid #eeeeee;
+}
+.cart-item--left {
+  padding: 25px;
+  display: flex;
+  align-items: center;
+}
+.cart-item--details {
+  margin-left: 20px;
+}
+.cart-item--image > img {
+  width: 150px;
+}
+
+.cart--information {
+  width: 300px;
+  padding: 25px;
+  margin-left: 25px;
+  border-left: 1px solid #eeeeee;
 }
