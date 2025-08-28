@@ -1,4 +1,4 @@
-﻿@model eTicaret2.Models.VerifyPhoneNumberViewModel
+﻿@model eCommerce2.Models.VerifyPhoneNumberViewModel
 @{
     ViewBag.Title = "Telefon numarasını doğrulayın";
 }
@@ -12,6 +12,7 @@
     <h4>Doğrulama kodunu girin</h4>
     <h5>@ViewBag.Status</h5>
     <hr />
+
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(m => m.Code, new { @class = "col-md-2 control-label" })

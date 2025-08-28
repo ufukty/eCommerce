@@ -1,4 +1,4 @@
-﻿@model eTicaret2.Models.RegisterViewModel
+﻿@model eCommerce2.Models.RegisterViewModel
 @{
     ViewBag.Title = "Kaydol";
 }
@@ -11,6 +11,7 @@
     @Html.AntiForgeryToken()
     <h4>Yeni hesap oluşturun.</h4>
     <hr />
+
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })

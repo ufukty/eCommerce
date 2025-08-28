@@ -1,4 +1,4 @@
-﻿@model eTicaret2.Models.ListViewModel
+﻿@model eCommerce2.Models.ListViewModel
 
 <div class="filter--container">
     <div class="filter--title">
@@ -11,9 +11,10 @@
                 @Html.ActionLink(button.displayName, "List", "Product", new
                 {
                     gender = button.linkParams[0],
-                    category = button.linkParams[1],
-                    size = button.linkParams[2]
-                }, new { @class = button.className });
+                category = button.linkParams[1],
+                size = button.linkParams[2]
+                }, new { @class = button.className })
+                ;
             }
         }
     </div>
@@ -30,9 +31,10 @@
                 @Html.ActionLink(button.displayName, "List", "Product", new
                 {
                     gender = button.linkParams[0],
-                    category = button.linkParams[1],
-                    size = button.linkParams[2]
-                }, new { @class = button.className });
+                category = button.linkParams[1],
+                size = button.linkParams[2]
+                }, new { @class = button.className })
+                ;
             }
         }
     </div>
@@ -48,9 +50,10 @@
                 @Html.ActionLink(button.displayName, "List", "Product", new
                 {
                     gender = button.linkParams[0],
-                    category = button.linkParams[1],
-                    size = button.linkParams[2]
-                }, new { @class = button.className });
+                category = button.linkParams[1],
+                size = button.linkParams[2]
+                }, new { @class = button.className })
+                ;
             }
         }
     </div>

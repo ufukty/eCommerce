@@ -1,4 +1,4 @@
-﻿@model eTicaret2.CartItem
+﻿@model eCommerce2.CartItem
 
 @{
     ViewBag.Title = "Create";
@@ -8,10 +8,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>CartItem</h4>
         <hr />
