@@ -2,3 +2,6 @@
 /bin
 /legacy
 /obj
+/wwwroot/img/**/*.*
+
+!/wwwroot/img/**/.keep
