@@ -17,26 +17,10 @@
                     @Html.ActionLink("ÇOCUK", "List", "Product", new { gender = "-boys-girls" }, new { @class = "nav-link" })
                 </li>
             </ul>
-            @using Microsoft.AspNet.Identity
-            @if (Request.IsAuthenticated)
-            {
-                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <ul class="navbar-nav mr">
-                        <li class="nav-item">@Html.ActionLink("Sepet", "Index", "Cart", routeValues: null, htmlAttributes: new { title = "Sepet", @class = "nav-link" })</li>
-                        <li class="nav-item">@Html.ActionLink("YÖNETİM", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Yönet", @class = "nav-link" })</li>
-                        <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Oturumu kapat</a></li>
-                    </ul>
-                }
-            }
-            else
-            {
-                <ul class="navbar-nav">
-                    <li class="nav-item">@Html.ActionLink("Kaydol", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
-                    <li class="nav-item active">@Html.ActionLink("Oturum aç", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
-                </ul>
-            }
+            <ul class="navbar-nav">
+                <li class="nav-item">@Html.ActionLink("Kaydol", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
+                <li class="nav-item active">@Html.ActionLink("Oturum aç", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
+            </ul>
 
         </div>
     </div>
