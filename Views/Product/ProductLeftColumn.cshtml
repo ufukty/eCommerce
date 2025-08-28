@@ -1,0 +1,57 @@
+﻿@model eTicaret2.Models.ListViewModel
+
+<div class="filter--container">
+    <div class="filter--title">
+        Cinsiyet
+    </div>
+    <div class="filter--buttons">
+        @{
+            foreach (var button in Model.filterList.GenderButtons)
+            {
+                @Html.ActionLink(button.displayName, "List", "Product", new
+                {
+                    gender = button.linkParams[0],
+                    category = button.linkParams[1],
+                    size = button.linkParams[2]
+                }, new { @class = button.className });
+            }
+        }
+    </div>
+</div>
+<div class="filter--container">
+
+    <div class="filter--title">
+        Kategori
+    </div>
+    <div class="filter--buttons">
+        @{
+            foreach (var button in Model.filterList.CategoryButtons)
+            {
+                @Html.ActionLink(button.displayName, "List", "Product", new
+                {
+                    gender = button.linkParams[0],
+                    category = button.linkParams[1],
+                    size = button.linkParams[2]
+                }, new { @class = button.className });
+            }
+        }
+    </div>
+</div>
+<div class="filter--container">
+    <div class="filter--title">
+        Beden
+    </div>
+    <div class="filter--buttons">
+        @{
+            foreach (var button in Model.filterList.SizeButtons)
+            {
+                @Html.ActionLink(button.displayName, "List", "Product", new
+                {
+                    gender = button.linkParams[0],
+                    category = button.linkParams[1],
+                    size = button.linkParams[2]
+                }, new { @class = button.className });
+            }
+        }
+    </div>
+</div>

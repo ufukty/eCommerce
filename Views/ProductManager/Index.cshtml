@@ -1,0 +1,99 @@
+﻿@model IEnumerable<eTicaret2.Product>
+
+@{
+    ViewBag.Title = "Ürün Yönetimi";
+    Layout = "~/Views/Shared/_Layout_FullWidth.cshtml";
+}
+
+<h2 style="text-align:center;margin-top:50px">ÜRÜN YÖNETİMİ</h2>
+
+<p style="text-align:center;margin-bottom:50px">
+    @Html.ActionLink("+ Yeni ürün oluştur", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantityXS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantityS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantityM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantityL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantityXL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinalPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagePath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantityXS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantityS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantityM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantityL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantityXL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FinalPrice)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Sil", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,76 @@
+﻿@model eTicaret2.Models.VMCartIndex
+
+@{
+    ViewBag.Title = "Sepetiniz";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ALIŞVERİŞ SEPETİNİZ</h2>
+
+<div class="cart--container">
+    <table class="cart--items-container">
+
+        <tr>
+            <th>Ürün</th>
+            <th>Adet / Birim fiyat</th>
+            <th>Toplam fiyat</th>
+            <th>
+        </tr>
+        @{var totalPrice = 0; }
+        @foreach (CartItem item in Model.cartItems)
+        {
+            Product product = Model.ProductDetails(item);
+            int itemTotalPrice = product.FinalPrice * item.Quantity;
+            totalPrice += itemTotalPrice;
+
+            <tr class="cart-item--container">
+
+                <td>
+
+                    <a class="cart-item--left" href="/Product/Detail?productID=@product.ID">
+                        <div class="cart-item--image">
+                            <img src="/@product.ImagePath" />
+                        </div>
+
+                        <div class="cart-item--details">
+                            <div class="cart-item--name">
+                                @product.Name
+                            </div>
+                            <div class="cart-item--gender-category">
+                                Beden: @item.ProductSize.ToUpper()
+                            </div>
+                        </div>
+                    </a>
+
+                </td>
+
+                <td>
+                    <div class="cart-item--unit-price">
+                        <div>@item.Quantity adet</div>
+                        <div>(@(product.FinalPrice).00 TL/adet)</div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="cart-item--total-price">
+                        <div>Toplam:</div>
+                        <div style="color:#000000">@(itemTotalPrice).00 TL</div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="cart-item--actions">
+                        <a href="Cart/Remove/@item.ID" class="">Sil</a>
+                    </div>
+                </td>
+
+            </tr>
+
+
+        }
+    </table>
+    <div class="cart--information">
+        <h4>Toplam:</h4>
+        <h2>@(totalPrice).00 TL</h2>
+    </div>
+</div>

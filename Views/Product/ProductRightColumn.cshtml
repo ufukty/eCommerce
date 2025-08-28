@@ -1,0 +1,115 @@
+﻿@model eTicaret2.Models.ListViewModel
+
+
+@{
+    string query = "SELECT * FROM dbo.Products";
+    bool FirstFlag = false, SectionFlag = false;
+    foreach (var filter in Model.filterList.GenderButtons)
+    {
+        if (filter.isActive)
+        {
+            if (FirstFlag == true && SectionFlag == true)
+            {
+                query += " OR";
+            }
+            else if (FirstFlag == true && SectionFlag == false)
+            {
+                query += " AND (";
+                SectionFlag = true;
+            }
+            else if (FirstFlag == false)
+            {
+                query += " WHERE (";
+                FirstFlag = true;
+                SectionFlag = true;
+            }
+            query += " [Gender] = '" + filter.queryName + "'";
+        }
+    }
+    if (SectionFlag)
+    {
+        query += " )";
+        SectionFlag = false;
+    }
+    foreach (var filter in Model.filterList.CategoryButtons)
+    {
+        if (filter.isActive)
+        {
+            if (FirstFlag == true && SectionFlag == true)
+            {
+                query += " OR";
+            }
+            else if (FirstFlag == true && SectionFlag == false)
+            {
+                query += " AND (";
+                SectionFlag = true;
+            }
+            else if (FirstFlag == false)
+            {
+                query += " WHERE (";
+                FirstFlag = true;
+                SectionFlag = true;
+            }
+            query += " [Category] = '" + filter.queryName + "'";
+        }
+    }
+    if (SectionFlag)
+    {
+        query += " )";
+        SectionFlag = false;
+    }
+    foreach (var filter in Model.filterList.SizeButtons)
+    {
+        if (filter.isActive)
+        {
+            if (FirstFlag == true && SectionFlag == true)
+            {
+                query += " OR";
+            }
+            else if (FirstFlag == true && SectionFlag == false)
+            {
+                query += " AND (";
+                SectionFlag = true;
+            }
+            else if (FirstFlag == false)
+            {
+                query += " WHERE (";
+                FirstFlag = true;
+                SectionFlag = true;
+            }
+            query += " [Quantity" + filter.queryName.ToUpper() + "] > 0";
+        }
+    }
+    if (SectionFlag)
+    {
+        query += " )";
+        SectionFlag = false;
+    }
+    var filteredByGender = Model.productContext.Products.SqlQuery(query);
+}
+
+Toplam @filteredByGender.Count() ürün bulundu
+
+<div class="product-grid">
+    @foreach (var card in filteredByGender.ToList())
+    {
+        <a href="@Url.Action("Detail", new { productID = card.ID })" class="card--container">
+            <div class="card--image">
+                <img src="~/@card.ImagePath" />
+            </div>
+            <div class="card--flex">
+                <div class="card--name">
+                    @card.Name
+                </div>
+                <div class="card--price-container">
+                    <div class="card--full-price">
+                        @card.FullPrice
+                    </div>
+                    <div class="card--final-price">
+                        @card.FinalPrice
+                    </div>
+                </div>
+            </div>
+        </a>
+    }
+</div>
