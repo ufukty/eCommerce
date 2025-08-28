@@ -5,7 +5,6 @@ using System.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using eCommerce.Models;
-using Microsoft.AspNet.Identity;
 
 namespace eCommerce.Controllers
 {
