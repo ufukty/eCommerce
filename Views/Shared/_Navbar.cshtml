@@ -23,11 +23,11 @@
                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                 {
                     @Html.AntiForgeryToken()
-            <ul class="navbar-nav mr">
-                <li class="nav-item">@Html.ActionLink("Sepet", "Index", "Cart", routeValues: null, htmlAttributes: new { title = "Sepet", @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("YÖNETİM", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Yönet", @class = "nav-link" })</li>
-                <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Oturumu kapat</a></li>
-            </ul>
+                    <ul class="navbar-nav mr">
+                        <li class="nav-item">@Html.ActionLink("Sepet", "Index", "Cart", routeValues: null, htmlAttributes: new { title = "Sepet", @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("YÖNETİM", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Yönet", @class = "nav-link" })</li>
+                        <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Oturumu kapat</a></li>
+                    </ul>
                 }
             }
             else
@@ -41,4 +41,3 @@
         </div>
     </div>
 </nav>
-
