@@ -5,5 +5,6 @@
   "[aspnetcorerazor]": {
     "editor.tabSize": 4
   },
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "dotnet.preferCSharpExtension": true
 }
