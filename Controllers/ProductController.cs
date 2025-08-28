@@ -15,7 +15,7 @@ namespace eCommerce.Controllers
         CartItemContext dbCart = new CartItemContext();
 
         // GET: Product
-        public ViewResult List(string gender, string category, string size)
+        public IActionResult List(string gender, string category, string size)
         {
             FilterList filter = new FilterList(gender, category, size);
             ListViewModel viewModel = new ListViewModel(filter, db);
@@ -23,14 +23,14 @@ namespace eCommerce.Controllers
             return View(viewModel);
         }
 
-        public ViewResult Detail(int productID)
+        public IActionResult Detail(int productID)
         {
 
             return View(db.Products.Find(productID));
         }
 
         [Authorize]
-        public ActionResult AddCart(int productID, string size, int quantity)
+        public IActionResult AddCart(int productID, string size, int quantity)
         {
             var query = "SELECT * FROM dbo.CartItems WHERE [UserID] = '" + User.Identity.GetUserId() + "' AND [ProductID] = " + productID + " AND [ProductSize] = '" + size + "'";
             var result = dbCart.CartItems.SqlQuery(query).ToList();

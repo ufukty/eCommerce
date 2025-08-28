@@ -12,18 +12,18 @@ namespace eCommerce.Controllers
         CartItemContext db = new CartItemContext();
 
         // GET: CartItem
-        public ActionResult Index()
+        public IActionResult Index()
         {
             return View(db.CartItems.ToList());
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Create(CartItem cartItem)
+        public IActionResult Create(CartItem cartItem)
         {
             if (ModelState.IsValid)
             {

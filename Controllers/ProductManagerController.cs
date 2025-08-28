@@ -15,7 +15,7 @@ namespace eCommerce.Controllers
 
 
 
-        public ActionResult Index()
+        public IActionResult Index()
         {
             return View(db.Products.ToList());
         }
@@ -23,7 +23,7 @@ namespace eCommerce.Controllers
 
 
 
-        public ActionResult Edit(int ID)
+        public IActionResult Edit(int ID)
         {
             Product product = db.Products.Find(ID);
             return View(product);
@@ -31,7 +31,7 @@ namespace eCommerce.Controllers
 
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPost(int? ID)
+        public IActionResult EditPost(int? ID)
         {
             var productToUpdate = db.Products.Find(ID);
             if (TryUpdateModel(productToUpdate, "", new string[] { "Name", "ImagePath", "Gender", "Category", "QuantityXS", "QuantityS", "QuantityM", "QuantityL", "QuantityXL", "Price", "DiscountedPrice" }))
@@ -44,13 +44,13 @@ namespace eCommerce.Controllers
 
 
         [HttpGet]
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(Product product)
+        public IActionResult Create(Product product)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace eCommerce.Controllers
 
 
 
-        public ActionResult Delete(int? ID)
+        public IActionResult Delete(int? ID)
         {
             var productToDelete = db.Products.Find(ID);
             db.Products.Remove(productToDelete);

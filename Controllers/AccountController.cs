@@ -56,7 +56,7 @@ namespace eCommerce.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public IActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -67,7 +67,7 @@ namespace eCommerce.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace eCommerce.Controllers
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
-        public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
+        public async Task<IActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
             // Kullanıcının, kullanıcı adı ve parolasıyla veya dış oturumla oturum açmasını iste
             if (!await SignInManager.HasBeenVerifiedAsync())
@@ -110,7 +110,7 @@ namespace eCommerce.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
+        public async Task<IActionResult> VerifyCode(VerifyCodeViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -138,7 +138,7 @@ namespace eCommerce.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public IActionResult Register()
         {
             return View();
         }
@@ -148,7 +148,7 @@ namespace eCommerce.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -176,7 +176,7 @@ namespace eCommerce.Controllers
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
             {
@@ -189,7 +189,7 @@ namespace eCommerce.Controllers
         //
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
-        public ActionResult ForgotPassword()
+        public IActionResult ForgotPassword()
         {
             return View();
         }
@@ -199,7 +199,7 @@ namespace eCommerce.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -225,7 +225,7 @@ namespace eCommerce.Controllers
         //
         // GET: /Account/ForgotPasswordConfirmation
         [AllowAnonymous]
-        public ActionResult ForgotPasswordConfirmation()
+        public IActionResult ForgotPasswordConfirmation()
         {
             return View();
         }
@@ -233,7 +233,7 @@ namespace eCommerce.Controllers
         //
         // GET: /Account/ResetPassword
         [AllowAnonymous]
-        public ActionResult ResetPassword(string code)
+        public IActionResult ResetPassword(string code)
         {
             return code == null ? View("Error") : View();
         }
@@ -243,7 +243,7 @@ namespace eCommerce.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -267,7 +267,7 @@ namespace eCommerce.Controllers
         //
         // GET: /Account/ResetPasswordConfirmation
         [AllowAnonymous]
-        public ActionResult ResetPasswordConfirmation()
+        public IActionResult ResetPasswordConfirmation()
         {
             return View();
         }
@@ -277,7 +277,7 @@ namespace eCommerce.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult ExternalLogin(string provider, string returnUrl)
+        public IActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Dış oturum açma sağlayıcısına yönlendirme iste
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
@@ -286,7 +286,7 @@ namespace eCommerce.Controllers
         //
         // GET: /Account/SendCode
         [AllowAnonymous]
-        public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
+        public async Task<IActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
             if (userId == null)
@@ -303,7 +303,7 @@ namespace eCommerce.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SendCode(SendCodeViewModel model)
+        public async Task<IActionResult> SendCode(SendCodeViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -321,7 +321,7 @@ namespace eCommerce.Controllers
         //
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
-        public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
@@ -353,7 +353,7 @@ namespace eCommerce.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
+        public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -390,7 +390,7 @@ namespace eCommerce.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public IActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
@@ -399,7 +399,7 @@ namespace eCommerce.Controllers
         //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
-        public ActionResult ExternalLoginFailure()
+        public IActionResult ExternalLoginFailure()
         {
             return View();
         }
@@ -444,7 +444,7 @@ namespace eCommerce.Controllers
             }
         }
 
-        private ActionResult RedirectToLocal(string returnUrl)
+        private IActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
             {

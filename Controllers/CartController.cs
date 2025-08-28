@@ -15,13 +15,13 @@ namespace eCommerce.Controllers
         CartItemContext dbCart = new CartItemContext();
         ProductContext dbProd = new ProductContext();
 
-        public ActionResult Index()
+        public IActionResult Index()
         {
             VMCartIndex viewModel = new VMCartIndex(dbCart, dbProd, User.Identity.GetUserId());
             return View(viewModel);
         }
 
-        public ActionResult Remove(int itemID)
+        public IActionResult Remove(int itemID)
         {
             var cartItem = dbCart.CartItems.Find(itemID);
             if (cartItem != null)
