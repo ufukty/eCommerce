@@ -1,0 +1,16 @@
+﻿@{
+
+    ViewBag.Title = "Ürünler";
+    Layout = "~/Views/Shared/_Layout_FullWidth.cshtml";
+}
+
+<div class="container">
+    <div id="product--layout-container">
+        <div id="product--layout-left">
+            @Html.Partial("ProductLeftColumn")
+        </div>
+        <div id="product--layout-right">
+            @Html.Partial("ProductRightColumn")
+        </div>
+    </div>
+</div>

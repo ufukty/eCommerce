@@ -1,0 +1,160 @@
+﻿@model eCommerce.Product
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pd--container">
+
+    <div class="pd--image">
+        <img src="~/@Model.ImagePath" />
+    </div>
+
+    <div class="pd--details">
+
+        <div class="pd--gender-category">
+            <span class="badge badge-pill badge-primary">
+                @Model.Gender.ToUpperInvariant()
+            </span>
+            <span class="badge badge-pill badge-primary">
+                @Model.Category.ToUpperInvariant()
+            </span>
+        </div>
+
+        <div class="pd--name">
+            <h2>
+                @Model.Name
+            </h2>
+        </div>
+
+        Beden seçin
+        <div class="pd--size-options">
+            <div class="pd--radio-container">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+                    <label id="optionC1" class="btn btn-secondary @(Model.QuantityXS > 0 ? "" : "disabled")" data-query="xs" onclick="sizeSelected(1)">
+                        <input type="radio" name="options" id="option1" autocomplete="off" @(Model.QuantityXS > 0 ? "" : "disabled")> XS
+                    </label>
+                    <label id="optionC2" class="btn btn-secondary @(Model.QuantityS > 0 ? "" : "disabled")" data-query="s" onclick="sizeSelected(2)">
+                        <input type="radio" name="options" id="option2" autocomplete="off" @(Model.QuantityS > 0 ? "" : "disabled")> S
+                    </label>
+                    <label id="optionC3" class="btn btn-secondary @(Model.QuantityM > 0 ? "" : "disabled")" data-query="m" onclick="sizeSelected(3)">
+                        <input type="radio" name="options" id="option3" autocomplete="off" @(Model.QuantityM > 0 ? "" : "disabled")> M
+                    </label>
+                    <label id="optionC4" class="btn btn-secondary @(Model.QuantityL > 0 ? "" : "disabled")" data-query="l" onclick="sizeSelected(4)">
+                        <input type="radio" name="options" id="option4" autocomplete="off" @(Model.QuantityL > 0 ? "" : "disabled")> L
+                    </label>
+                    <label id="optionC5" class="btn btn-secondary @(Model.QuantityXL > 0 ? "" : "disabled")" data-query="xl" onclick="sizeSelected(5)">
+                        <input type="radio" name="options" id="option5" autocomplete="off" @(Model.QuantityXL > 0 ? "" : "disabled")> XL
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function sizeSelected(sizeID) {
+                document.getElementById("optionCQ1").style.display = "none";
+                document.getElementById("optionCQ2").style.display = "none";
+                document.getElementById("optionCQ3").style.display = "none";
+                document.getElementById("optionCQ4").style.display = "none";
+                document.getElementById("optionCQ5").style.display = "none";
+                if (!(document.getElementById("optionC" + sizeID).classList.contains("disabled"))) {
+                    document.getElementById("optionCQ" + sizeID).style.display = "block";
+                }
+            }
+        </script>
+
+        <div class="pd--quantities">
+
+            <div id="optionCQ1" class="form-group" style="display:none">
+                <label for="exampleSelect1">Adet seçin</label>
+                <select class="form-control" id="exampleSelect1">
+                    @for (int i = 0; i < Model.QuantityXS && i < 5; i++)
+                    {
+                        <option>@(i + 1)</option>
+                    }
+                </select>
+            </div>
+
+            <div id="optionCQ2" class="form-group" style="display:none">
+                <label for="exampleSelect2">Adet seçin</label>
+                <select class="form-control" id="exampleSelect2">
+                    @for (int i = 0; i < Model.QuantityS && i < 5; i++)
+                    {
+                        <option>@(i + 1)</option>
+                    }
+                </select>
+            </div>
+
+            <div id="optionCQ3" class="form-group" style="display:none">
+                <label for="exampleSelect3">Adet seçin</label>
+                <select class="form-control" id="exampleSelect3">
+                    @for (int i = 0; i < Model.QuantityM && i < 5; i++)
+                    {
+                        <option>@(i + 1)</option>
+                    }
+                </select>
+            </div>
+
+            <div id="optionCQ4" class="form-group" style="display:none">
+                <label for="exampleSelect4">Adet seçin</label>
+                <select class="form-control" id="exampleSelect4">
+                    @for (int i = 0; i < Model.QuantityL && i < 5; i++)
+                    {
+                        <option>@(i + 1)</option>
+                    }
+                </select>
+            </div>
+
+            <div id="optionCQ5" class="form-group" style="display:none">
+                <label for="exampleSelect5">Adet seçin</label>
+                <select class="form-control" id="exampleSelect5">
+                    @for (int i = 0; i < Model.QuantityXL && i < 5; i++)
+                    {
+                        <option>@(i + 1)</option>
+                    }
+                </select>
+            </div>
+
+        </div>
+
+        <div class="pd--full-price">@Model.FullPrice</div>
+        <div class="pd--final-price">@Model.FinalPrice</div>
+
+        <div class="btn btn-danger" onclick="addCart()">Sepete Ekle</div>
+        <script>
+            function addCart() {
+                var sizeIndex = undefined, sizeChar = undefined;
+                for (var i = 1; i <= 5; i++) {
+                    var radio = document.getElementById("optionC" + i);
+                    if (radio.classList.contains("active")) {
+                        sizeIndex = i;
+                        sizeChar = radio.dataset.query;
+                        break;
+                    }
+                }
+                if (sizeIndex == undefined) {
+                    alert("Sepete eklemeden önce bir beden seçin.");
+                    return;
+                }
+
+                var quantity = undefined;
+                var quantities = document.getElementById("exampleSelect" + sizeIndex).children;
+                for (var i = 0; i < quantities.length; i++) {
+                    var option = quantities[i];
+                    if (option.selected) {
+                        quantity = i + 1;
+                        break;
+                    }
+                }
+                if (quantity == undefined) {
+                    alert("Sepete eklemeden adet seçin.");
+                    return;
+                }
+                window.location.href = "/Product/AddCart/@Model.ID/" + sizeChar + "/" + quantity;
+            }
+        </script>
+    </div>
+
+</div>
