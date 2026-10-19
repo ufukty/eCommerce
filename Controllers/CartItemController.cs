@@ -1,37 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
-namespace eCommerce.Controllers
+namespace eCommerce.Controllers;
+
+public class CartItemController : Controller
 {
-    public class CartItemController : Controller
+    CartItemContext db = new CartItemContext();
+
+    // GET: CartItem
+    public IActionResult Index()
     {
-        CartItemContext db = new CartItemContext();
+        return View(db.CartItems.ToList());
+    }
 
-        // GET: CartItem
-        public IActionResult Index()
+    [HttpGet]
+    public IActionResult Create()
+    {
+        return View();
+    }
+    [HttpPost]
+    public IActionResult Create(CartItem cartItem)
+    {
+        if (ModelState.IsValid)
         {
-            return View(db.CartItems.ToList());
+            db.CartItems.Add(cartItem);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
-
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Create(CartItem cartItem)
-        {
-            if (ModelState.IsValid)
-            {
-                db.CartItems.Add(cartItem);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(cartItem);
-        }
+        return View(cartItem);
     }
 }
